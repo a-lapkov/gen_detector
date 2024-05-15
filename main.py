@@ -66,17 +66,19 @@ class GenderDetector:
       'required': {
         'image': ('IMAGE',),
         'child_age_threshold': ('INT', {'default': 15, 'min': 0, 'max': 0xffffffffffffffff}),
-        'child_boy_positive': ('STRING', {'default': '', 'multiline': True, 'dynamicPrompts': True}),
-        'child_boy_negative': ('STRING', {'default': '', 'multiline': True, 'dynamicPrompts': True}),
-        'child_girl_positive': ('STRING', {'default': '', 'multiline': True, 'dynamicPrompts': True}),
-        'child_girl_negative': ('STRING', {'default': '', 'multiline': True, 'dynamicPrompts': True}),
-        'adult_man_positive': ('STRING', {'default': '', 'multiline': True, 'dynamicPrompts': True}),
-        'adult_man_negative': ('STRING', {'default': '', 'multiline': True, 'dynamicPrompts': True}),
-        'adult_woman_positive': ('STRING', {'default': '', 'multiline': True, 'dynamicPrompts': True}),
-        'adult_woman_negative': ('STRING', {'default': '', 'multiline': True, 'dynamicPrompts': True}),
-        'group_positive': ('STRING', {'default': '', 'multiline': True, 'dynamicPrompts': True}),
-        'group_negative': ('STRING', {'default': '', 'multiline': True, 'dynamicPrompts': True}),
       },
+      'optional': {
+        'child_boy_positive': ('STRING', {'default': '', 'multiline': True}),
+        'child_boy_negative': ('STRING', {'default': '', 'multiline': True}),
+        'child_girl_positive': ('STRING', {'default': '', 'multiline': True}),
+        'child_girl_negative': ('STRING', {'default': '', 'multiline': True}),
+        'adult_man_positive': ('STRING', {'default': '', 'multiline': True}),
+        'adult_man_negative': ('STRING', {'default': '', 'multiline': True}),
+        'adult_woman_positive': ('STRING', {'default': '', 'multiline': True}),
+        'adult_woman_negative': ('STRING', {'default': '', 'multiline': True}),
+        'group_positive': ('STRING', {'default': '', 'multiline': True}),
+        'group_negative': ('STRING', {'default': '', 'multiline': True}),
+      }
     }
 
   RETURN_TYPES: tuple[str, str] = ('STRING', 'STRING', )
