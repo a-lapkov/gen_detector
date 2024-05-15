@@ -106,6 +106,11 @@ class GenderDetector:
     group_positive='',
     group_negative='',
   ) -> tuple[str, str]:
+    child_boy = (child_boy_positive, child_boy_negative, )
+    child_girl = (child_girl_positive, child_girl_negative, )
+    adult_man = (adult_man_positive, adult_man_negative, )
+    adult_woman = (adult_woman_positive, adult_woman_negative, )
+
     pil_images = batch_tensor_to_pil(image)
     cv_image = convert_image(pil_images[0])
     faces: list[Face] = analyze_faces(cv_image)
@@ -113,12 +118,12 @@ class GenderDetector:
     if not isGroup:
       isMan: bool = faces[0].sex == 'M'
       isChild: bool = (faces[0].age is not None and faces[0].age <= child_age_threshold)
-      if isMan and isChild:
-        return (child_boy_positive, child_boy_negative, )
-      elif not isMan and isChild:
-        return (child_girl_positive, child_girl_negative, )
-      elif isMan and not isChild:
-        return (adult_man_positive, adult_man_negative, )
-      elif not isMan and not isChild:
-        return (adult_woman_positive, adult_woman_negative, )
+      if isMan and isChild and '' not in child_boy:
+        return child_boy
+      elif not isMan and isChild and '' not in child_girl:
+        return child_girl
+      elif isMan and not isChild and '' not in adult_man:
+        return adult_man
+      elif not isMan and not isChild and '' not in adult_woman:
+        return adult_woman
     return (group_positive, group_negative, )
